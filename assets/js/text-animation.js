@@ -44,16 +44,15 @@ document.addEventListener("DOMContentLoaded", () => {
   letterFadeSlide(".faq-section h2", 25, 0.04, 0);
   //          Paragraf
   letterFadeSlide(".lead-text", 25, 0.01, 0);
-  letterFadeSlide(".about-content p", 25, 0.01, 0);
-  letterFadeSlide(".feature-lead-text", 25, 0.01, 0);
 });
 
 // =========================== h3 başlık
 
 function wordFadeSlide(
   selector,
-  yDistance = 20,
-  staggerTime = 0.06,
+  yDistance = 25,
+  staggerAmount = 0.18,
+  durationTime = 2.8,
   delayTime = 0
 ) {
   const elements = document.querySelectorAll(selector);
@@ -61,6 +60,7 @@ function wordFadeSlide(
 
   elements.forEach((element) => {
     const words = element.innerText.split(" ");
+
     element.innerHTML = words
       .map((w) => `<span class="word">${w}</span>`)
       .join(" ");
@@ -69,11 +69,12 @@ function wordFadeSlide(
       scrollTrigger: {
         trigger: element,
         start: "top 90%",
+        once: true,
       },
       y: yDistance,
       opacity: 0,
-      stagger: staggerTime,
-      duration: 2,
+      stagger: staggerAmount, // kelimeler arası gecikme daha uzun
+      duration: durationTime, // animasyon süresi daha uzun
       ease: "power3.out",
       delay: delayTime,
     });
@@ -81,40 +82,32 @@ function wordFadeSlide(
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 👉 H3 animasyonunu istediğin yerlere uygula:
-  wordFadeSlide("section h3", 5, 0.06, 0);
+  wordFadeSlide("section h3", 25, 0.18, 2.8, 0);
 });
 
 //================== Aşağıdan Yukarı
 
-function paragraphSlideUp(selector, yDistance = 40, duration = 1.2) {
+function paragraphSlideUp(selector, y = 40, duration = 1.2) {
   gsap.registerPlugin(ScrollTrigger);
 
-  const elements = document.querySelectorAll(selector);
-  if (!elements.length) return;
-
-  elements.forEach((el) => {
-    gsap.fromTo(
-      el,
-      {
-        opacity: 0,
-        y: yDistance, // aşağıdan başla
+  gsap.utils.toArray(selector).forEach((el) => {
+    gsap.from(el, {
+      opacity: 0,
+      y: y,
+      duration: duration,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: el,
+        start: "top 95%",
+        once: true,
       },
-      {
-        opacity: 1,
-        y: 0, // yerine otur
-        duration: duration,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: el,
-          start: "top 80%",
-          once: true,
-        },
-      }
-    );
+    });
   });
 }
-
 document.addEventListener("DOMContentLoaded", () => {
-  paragraphSlideUp(".about-lead-text", 60, 3);
+  paragraphSlideUp(".about-text", 40, 1.6);
+  paragraphSlideUp(".feature-lead-text", 40, 1.6);
+  paragraphSlideUp(".features-text", 40, 1.6);
+  paragraphSlideUp(".image-block", 40, 1.6);
+  paragraphSlideUp(".container", 40, 2);
 });

@@ -3,14 +3,14 @@
 /* Aktif tema */
 :root {
   /* Renk Paleti (Logodan ilham alınarak) */
-  --primary-bg: #000000;
-  --secondary-bg: #0c0c0c;
-  --third-bg: #3b8591;
-  --buton-color: #ffffff;
-  --text-light: #ffffff;
-  --text-dark: #d3d3d3;
-  --text-black: #000000;
-  --accent-blue: #00ffff;
+  --primary-bg: hsl(0 0% 0%);
+  --secondary-bg: hsl(0 0% 5%);
+  --third-bg: hsl(180 100% 90%);
+  --buton-color: hsl(0 0% 100%);
+  --text-light: hsl(0 0% 100%);
+  --text-dark: hsl(0 0% 80%);
+  --text-black: hsl(0 0% 0%);
+  --accent-blue: hsl(180 100% 50%);
   --accent-pink: #ff00ff;
 
   /* Gölge Efektleri (Dijital parlamayı taklit etmek için) */
@@ -67,24 +67,26 @@ header {
   left: 0;
   width: 100%;
   z-index: 9999;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  padding: 8px 50px;
+  padding: 32px 50px;
   background-color: var(--primary-bg);
   border-bottom: 1px solid var(--third-bg);
-
-  transform: translateZ(0); /* ScrollSmoother fix */
-  will-change: transform; /* daha stabil */
+  transform: translateZ(0);
+  will-change: transform;
+  overflow: visible; /* taşma için önemli */
 }
 
 .amblem {
-  display: flex;
-  flex-direction: row;
-  width: 80px;
-  height: 80px;
+  position: absolute;
+  left: 50%;
+  top: 200px;
+  width: 250px;
+  height: 250px;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  transition: none;
 }
 
 nav a {
@@ -175,7 +177,7 @@ section h2 {
   margin-bottom: clamp(15px, 2vw, 20px);
   color: var(--text-light);
   font-family: "Orbitron", sans-serif;
-  mix-blend-mode: difference; /* renk ters çevirme efekti */
+  mix-blend-mode: difference;
 }
 
 section h1 {
@@ -214,18 +216,12 @@ section p {
 /* === Lead Text === */
 
 .lead-text {
-  /* min=18px, mid=2.5vw, max=24px */
   font-size: clamp(18px, 2.5vw, 22px);
   font-weight: 300;
   color: var(--text-light);
   border-left: 3px solid var(--accent-pink);
-
-  /* min=15px, mid=2vw, max=20px */
   padding-left: clamp(15px, 2vw, 20px);
-
   line-height: 1.4;
-
-  /* min=30px, mid=4vw, max=50px */
   margin-bottom: clamp(30px, 4vw, 50px);
 }
 
@@ -280,13 +276,6 @@ footer {
   width: 100%;
   height: 100%;
   z-index: 0; /* İçeriğin arkasında kalması için */
-}
-
-.banner h2,
-.banner p,
-.banner a {
-  opacity: 0;
-  transform: translateZ(200px) rotateX(75deg); /* yerde yatık + kullanıcıya yakın */
 }
 
 /* === GENEL SCROLLBAR STİLİ === */

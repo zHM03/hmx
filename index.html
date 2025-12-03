@@ -45,14 +45,20 @@
         <div class="smooth-content">
 
             <main>
-                <section class="banner" id="home">
-                    <video autoplay muted loop id="background-video">
-                        <source src="assets/images/hero/earth.mp4" type="video/mp4">
+                <section class="hero" id="home">
+
+                    <video autoplay muted loop id="background-video" class="background-video">
+                        <source src="assets/images/hero/hero2-1.mp4" type="video/mp4">
                         Tarayıcınız video etiketini desteklemiyor.
                     </video>
-                    <img src="assets/images/logo/HMX-AMLBEM.png" alt="ajans amblemi" class="banner-amblem">
-                    <h2>Markanızı Dijitalde <span>Zirveye</span> Taşıyoruz.</h2>
-                    <p>Modern, hızlı ve etkili web tasarımlarıyla işinizi geleceğe taşıyın.</p>
+
+                    <div class="video-overlay"></div>
+
+                    <div class="hero-content">
+                        <h2>Markanızı Dijitalde <span>Zirveye</span> Taşıyoruz.</h2>
+                        <p>Modern, hızlı ve etkili web tasarımlarıyla işinizi geleceğe taşıyın.</p>
+                    </div>
+
                 </section>
 
                 <section class="service-section" id="services">
@@ -98,12 +104,9 @@
                                     </span>
                                 </p>
                             </div>
-
-                            <a href="#process" class="services-cta-btn">Çalışma Sürecimiz →</a>
                         </div>
-
                         <div class="image-block">
-                            <img src="assets/images/hero/services.jpg" width="800" height="600"
+                            <img src="assets/images/hero/services2.png" width="800" height="600"
                                 alt="Web Sitesi Tasarımı Mockup">
                         </div>
                     </div>
@@ -297,28 +300,19 @@
                                 <h3>HMX Agency</h3>
                                 <h2>Dijitali Yeniden Tasarlıyoruz.</h2>
 
+                                <p class="about-text">
+                                    <strong>HMX Agency,</strong> bir web tasarım stüdyosundan çok daha fazlasıdır.
+                                    Biz, sıradan dijital varlıkları
+                                    <strong>büyümeyi tetikleyen sofistike platformlara</strong> dönüştürme misyonuyla
+                                    kurulmuş,
+                                    seçkin bir inovasyon laboratuvarıyız.
+                                </p>
 
-                                <div class="about-content">
-                                    <p><strong>HMX Agency,</strong> bir web tasarım stüdyosundan çok daha fazlasıdır.
-                                        Biz,
-                                        sıradan
-                                        dijital varlıkları
-                                        <strong>büyümeyi tetikleyen sofistike platformlara</strong> dönüştürme
-                                        misyonuyla
-                                        kurulmuş,
-                                        seçkin bir inovasyon laboratuvarıyız.
-                                    </p>
-                                </div>
-
-                                <div class="about-value-prop">
-                                    <p class="about-lead-text">Kurulduğumuz günden bu yana, yalnızca estetik değil,
-                                        <strong>ölçeklenebilir
-                                            sonuçlar</strong> üreten çözümlere odaklandık. Çalışmalarımızda mükemmellik,
-                                        bir
-                                        hedef
-                                        değil, bir standarttır.
-                                    </p>
-                                </div>
+                                <p class="about-text highlight-text">
+                                    Kurulduğumuz günden bu yana, yalnızca estetik değil,
+                                    <strong>ölçeklenebilir sonuçlar</strong> üreten çözümlere odaklandık.
+                                    Çalışmalarımızda mükemmellik, bir hedef değil, bir standarttır.
+                                </p>
                             </div>
                             <div class="about-right">
                                 <div class="about-standards-timeline">
@@ -414,12 +408,13 @@
                         </div>
                     </div>
                 </section>
+                <footer>
+                    &copy; 2025 HMX Agency. Tüm Hakları Saklıdır.
+                </footer>
         </div>
     </div>
 
-    <footer>
-        &copy; 2025 HMX Agency. Tüm Hakları Saklıdır.
-    </footer>
+
     <div class="cursor"></div>
 
     <!-- Swiper CSS -->
@@ -438,6 +433,47 @@
     <script src="assets/js/canvas.js"></script>
     <script src="assets/js/animation.js"></script>
     <script src="assets/js/text-animation.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        let mm = gsap.matchMedia();
+
+        // DESKTOP
+        mm.add("(min-width: 769px)", () => {
+            gsap.to(".amblem", {
+                scrollTrigger: {
+                    trigger: ".hero-section",
+                    start: "top top",
+                    endTrigger: ".service-section",
+                    end: "top 10%",
+                    scrub: 1,
+                },
+                left: "25px",
+                top: "5px",
+                width: "120px",
+                height: "120px",
+                transform: "translate(0,0)"
+            });
+        });
+
+        // MOBILE
+        mm.add("(max-width: 768px)", () => {
+            gsap.to(".amblem", {
+                scrollTrigger: {
+                    trigger: ".hero-section",
+                    start: "top top",
+                    endTrigger: ".service-section",
+                    end: "top 10%",
+                    scrub: 1,
+                },
+                left: "10px",      // mobile için daha solda
+                top: "5px",
+                width: "90px",     // mobile için daha küçük logo
+                height: "90px",
+                transform: "translate(0,0)"
+            });
+        });
+    </script>
 
 </body>
 
